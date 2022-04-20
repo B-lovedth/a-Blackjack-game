@@ -38,8 +38,10 @@ const getRandomCard = () => {
 };
 const renderGame = () => {
   cardEl.textContent = "Card: "; // initializes text content as "Card:"
-  for (let i = 0; i < cardArray.length; i++) {
-    cardEl.textContent += `${cardArray[i]} `; // concatenates all the elements in the array into a string
+  // for (let i = 0; i < cardArray.length; i++) {
+  //   cardEl.textContent += `${cardArray[i]} `; // concatenates all the elements in the array into a string
+  for(let i in cardArray){ 
+    cardEl.textContent += `${cardArray[i]} `
   }
   sumEl.textContent = `Sum: ${sum}`; // displays the value of sum
   if (sum <= 20) {
