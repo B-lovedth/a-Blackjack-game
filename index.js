@@ -65,7 +65,7 @@ const renderGame = () => {
   }
   if (isAlive === false) {
     player.chips -= 100;
-    playerEl.textContent = player.name + ": $" + player.chips;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
   }
 };
 
