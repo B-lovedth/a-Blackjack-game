@@ -61,7 +61,7 @@ const renderGame = () => {
 
   if (hasBlackjack === true) {
     player.chips += 100;
-    playerEl.textContent = player.name + ": $" + player.chips;
+    playerEl.textContent = `${player.name}: $${player.chips}`;
   }
   if (isAlive === false) {
     player.chips -= 100;
