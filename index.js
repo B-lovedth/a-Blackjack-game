@@ -6,9 +6,9 @@ let cardArray = [];
 let sum = 0;
 let hasBlackjack = false;
 let isAlive = false;
-const sumEl = document.getElementById("sum-el"); // stores the object from the HTMl doc
+const sumEl = document.querySelector("#sum-el"); // stores the object from the HTMl doc
 const cardEl = document.querySelector("#card-el");
-const messageEl = document.getElementById("message-el");
+const messageEl = document.querySelector("#message-el");
 let player = {
   name: "Great",
   chips: 0,
