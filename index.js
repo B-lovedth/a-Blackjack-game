@@ -51,7 +51,7 @@ const renderGame = () => {
   } else if (sum === 21) {
     messageEl.textContent = "You've got Blackjack!";
     isAlive = true;
-    hasBlackjack = true;
+    hasBlackjack =true;
   } else {
     messageEl.textContent = "You are out of the game! ";
     isAlive = false;
