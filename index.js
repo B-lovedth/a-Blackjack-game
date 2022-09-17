@@ -6,9 +6,20 @@ let cardArray = [];
 let sum = 0;
 let hasBlackjack = false;
 let isAlive = false;
+const sumEl = document.querySelector("#sum-el"); 
 const cardEl = document.querySelector("#card-el");
 const messageEl = document.querySelector("#message-el");
+let uName = prompt("May i know your name?")
+if (uName === '') {
+  uName = 'You';
+} else if (isNaN(uName)) {
+  alert(`Welcome!, ${uName}`)
+} else if (!isNaN(uName)) {
+  alert('Please enter a Valid name!')
+  location.reload()
+}
 let player = {
+  name: uName,
   chips: 0,
 };
 
