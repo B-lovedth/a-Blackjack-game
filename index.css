@@ -2,19 +2,106 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #016f32;
     color: white;
+    -webkit-text-stroke: 1px #222;
     font-weight: bolder;
     text-align: center;
     font-size: 35px;
+    overflow: hidden;
 }
 
+body::before {
+    content: ' ';
+    position: absolute;
+    left: -15%;
+    top: -15%;
+    width: 35rem;
+    height: 35rem;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+    filter:blur(6px);
+    background: linear-gradient(45deg, goldenrod, #f67804);
+    box-shadow: 5px 10px 6px #222;
+}
+
+body::after {
+    content: ' ';
+    position: absolute;
+    right: -15%;
+    bottom: -15%;
+    width: 35rem;
+    height: 35rem;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.8;
+    filter: blur(3px);
+    background: linear-gradient(45deg, #016f32, #00ff73);
+        box-shadow: -10px -1px 6px #222;
+}
+.main{
+    height:100%;
+    width:100%;
+    z-index:5;
+}
 h1 {
     color: goldenrod;
     transition: 0.3s ease-in-out;
 }
 
 #message-el {
-    font-style: italic;
+    font-weight:700;
+    font-size:larger;
     transition: 0.3s ease-in-out;
+}
+
+.card {
+    position:relative;
+    height: 4rem;
+    width: 3rem;
+    font-size:2rem;
+    margin-right: 1rem;
+    color: #646464;
+    background: #fff;
+    border-radius: 5px;
+    text-align: center;
+    overflow:hidden;
+    z-index: 1;
+    box-shadow: 3px 2px 3px #222;
+}
+.card span{
+    z-index:2;
+    display: inline-flex;
+    align-items: center;
+    justify-self: center;
+    height: 100%;
+}
+.card::before{
+    content:' ';
+    position:absolute;
+    left:-10%;
+    top:-10%;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    z-index: -1;
+    background: linear-gradient(45deg , goldenrod, #f67804);
+}
+.card::after{
+    content:' ';
+    position:absolute;
+    right:-10%;
+    bottom:-10%;
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    z-index: -1;
+    background: linear-gradient(45deg , #016f32, #00ff73);
+}
+
+#card-el {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button {
@@ -27,10 +114,13 @@ button {
     border-radius: 10px;
     margin-bottom: 2px;
     margin-top: 2px;
-    transition:0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 3px 2px 3px #222;
+    -webkit-text-stroke: 0.5px #fff;
+    transition: 0.3s ease-in-out;
 }
 
 button:active {
-    transform: scale(0.5);   
+    transform: scale(0.5);
     background-color: #f67804;
 }
