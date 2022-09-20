@@ -1,14 +1,16 @@
-/** @format */
-
 let firstCard;
 let secondCard;
 let cardArray = [];
 let sum = 0;
 let hasBlackjack = false;
 let isAlive = false;
+let timeleft;
 const sumEl = document.querySelector("#sum-el"); 
 const cardEl = document.querySelector("#card-el");
 const messageEl = document.querySelector("#message-el");
+const start = document.querySelector("#start");
+const newGame = document.querySelector("#new");
+console.log(newGame)
 let uName = prompt("May i know your name?")
 if (uName === '') {
   uName = 'You';
@@ -46,11 +48,13 @@ const getRandomCard = () => {
   }
 };
 const renderGame = () => {
-  cardEl.textContent = "Card: "; // initializes text content as "Card:"
+      timeleft = 3;
+
+  cardEl.textContent = "Cards: "; // initializes text content as "Card:"
   // for (let i = 0; i < cardArray.length; i++) {
   //   cardEl.textContent += `${cardArray[i]} `; // concatenates all the elements in the array into a string
   for(let i in cardArray){ 
-    cardEl.textContent += `${cardArray[i]} ` //refactored
+    cardEl.innerHTML += `<div class='card'><span>${cardArray[i]}</span></div> ` //refactored
   }
   sumEl.textContent = `Sum: ${sum}`; // displays the value of sum
   if (sum <= 20) {
@@ -65,8 +69,20 @@ const renderGame = () => {
     messageEl.textContent = "You are out of the game! ";
     isAlive = false;
     hasBlackjack = false;
+    let downloadTimer = setInterval(function () {
+      if (timeleft < 1) {
+        reset();
+        start.disabled = false;
+        newGame.disabled = false;
+        clearInterval(downloadTimer);
+      } else {
+        start.disabled = true;
+        newGame.disabled = true;
+        messageEl.textContent = `new game in ${timeleft}`;
+        timeleft -= 1;
+      }
+    }, 1000);
   }
-
   if (hasBlackjack === true) {
     player.chips += 100;
     playerEl.textContent = `${player.name}: $${player.chips}`;
@@ -76,21 +92,34 @@ const renderGame = () => {
     playerEl.textContent = `${player.name}: $${player.chips}`;
   }
 };
-
-const startGame = () => {
+const reset = () => {
+  firstCard = null;
+  secondCard = null;
+  cardArray = [];
+  sum = 0;
+  hasBlackjack = false;
+  isAlive = false;
+  cardEl.textContent = "Cards: ";
+  messageEl.textContent = "Draw a card";
+  sumEl.textContent = `Sum:`; 
+  // player.chips = 0;
+  // playerEl.textContent = `${player.name}: $${player.chips}`;
+  console.log("done");
+};;;
+start.addEventListener("click", () => {
   isAlive = true;
   firstCard = getRandomCard(); // invokes getRandomCard function
   secondCard = getRandomCard();
   cardArray = [firstCard, secondCard];
   sum = firstCard + secondCard;
   renderGame(); // invokes function
-};
+}) 
 
-const newCard = () => {
+newGame.addEventListener("click", () => {
   if (isAlive === true && hasBlackjack === false) {
     let card = getRandomCard(); // assigns random value to card
     sum += card; //adds the card value to sum
     cardArray.push(card); // adds card to end of array
     renderGame();
   } // invokes function
-};
+})
