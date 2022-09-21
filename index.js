@@ -26,9 +26,13 @@ const initLoad = () => {
   } else {
       let uName = prompt("May i know your name?");
       if (uName === "") {
-        uName = "You";
+        player.name = "You";
+        alert(
+          `Click on the Blackjack logo for info on the game.`
+        );
+
       } else if (isNaN(uName)) {
-        alert(`Welcome!, ${uName}`);
+        alert(`Welcome!, ${uName}\nClick on the Blackjack logo for info on the game.`);
         player.name = uName
       } else if (!isNaN(uName)) {
         alert("Please enter a Valid name!");
