@@ -121,14 +121,17 @@ const renderGame = () => {
   storage()
 };
 const checkChips = () => {
+  if (player.chips < 400) {
+    chip.classList.add("loss");
+  }else
+    chip.classList.remove("loss");
+  
   if (player.chips < 0) {
     alert("oops! , You're out of Chips!");
     _continue();
-    chip.classList.add("loss");
-  } else
-    chip.classList.remove("loss");
-    
+  }  
 }
+let date = 5;
 const _continue = () => {
   const query = confirm("Do you want to start a new game?");
   if (query) {
