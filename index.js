@@ -10,6 +10,8 @@ const cardEl = document.querySelector("#card-el");
 const messageEl = document.querySelector("#message-el");
 const start = document.querySelector("#start");
 const newGame = document.querySelector("#new");
+const chip = document.querySelector("#chip");
+const _name = document.querySelector("#name")
 console.log(newGame)
 let uName = prompt("May i know your name?")
 if (uName === '') {
@@ -22,11 +24,14 @@ if (uName === '') {
 }
 let player = {
   name: uName,
-  chips: 0,
+  chips: 2000,
 };
-
-let playerEl = document.getElementById("player-el");
-playerEl.textContent = `${player.name}: $${player.chips}`;
+_name.textContent = player.name;
+chip.textContent = player.chips;
+// let playerEl = document.getElementById("player-el");
+const storage = () => {
+  
+}
 
 const getRandomCard = () => {
   let myRand = Math.floor(Math.random() * 13) + 1; // generates random number from 1 to 13
@@ -49,7 +54,6 @@ const getRandomCard = () => {
 };
 const renderGame = () => {
       timeleft = 3;
-
   cardEl.textContent = "Cards: "; // initializes text content as "Card:"
   // for (let i = 0; i < cardArray.length; i++) {
   //   cardEl.textContent += `${cardArray[i]} `; // concatenates all the elements in the array into a string
@@ -83,23 +87,27 @@ const renderGame = () => {
       }
     }, 1000);
   }
+    checkChips();
+};
+const checkChips = () => {
   if (hasBlackjack === true) {
     player.chips += 100;
-    playerEl.textContent = `${player.name}: $${player.chips}`;
+    _name.textContent = player.name;
+    chip.textContent = player.chips;
   }
   if (isAlive === false) {
     player.chips -= 100;
-    playerEl.textContent = `${player.name}: $${player.chips}`;
+    _name.textContent = player.name;
+    chip.textContent = player.chips;
   }
-  checkChips()
-};
-const checkChips = () => {
   if (player.chips < 0) {
-    playerEl.classList.add("loss")
+    alert("You're out of Chips!")
+    chip.classList.add("loss")
   } else
-    playerEl.classList.remove("loss");
+    chip.classList.remove("loss");
     
 }
+
 const reset = () => {
   firstCard = null;
   secondCard = null;
