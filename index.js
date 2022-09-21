@@ -12,25 +12,45 @@ const start = document.querySelector("#start");
 const newGame = document.querySelector("#new");
 const chip = document.querySelector("#chip");
 const _name = document.querySelector("#name")
-console.log(newGame)
-let uName = prompt("May i know your name?")
-if (uName === '') {
-  uName = 'You';
-} else if (isNaN(uName)) {
-  alert(`Welcome!, ${uName}`)
-} else if (!isNaN(uName)) {
-  alert('Please enter a Valid name!')
-  location.reload()
-}
+const head = document.querySelector("#head");
 let player = {
-  name: uName,
-  chips: 2000,
+  name: null,
+  chips: null,
 };
-_name.textContent = player.name;
-chip.textContent = player.chips;
-// let playerEl = document.getElementById("player-el");
+const initLoad = () => {
+  const getName = localStorage.getItem('name')
+  const getChips = localStorage.getItem('chips')
+  if(getChips && getName) alert(`Welcome Back ${getName}`)
+  if (getName) {
+    player.name = getName
+  } else {
+      let uName = prompt("May i know your name?");
+      if (uName === "") {
+        uName = "You";
+      } else if (isNaN(uName)) {
+        alert(`Welcome!, ${uName}`);
+        player.name = uName
+      } else if (!isNaN(uName)) {
+        alert("Please enter a Valid name!");
+        location.reload();
+    };
+  }
+  if (getChips) {
+    player.chips = getChips;
+  } else {
+    player.chips = 1000;
+  }
+  _name.textContent = player.name;
+  chip.textContent = player.chips;
+  console.log(player.chips)
+  console.log(player.name)
+}
+initLoad();
+
+
 const storage = () => {
-  
+  localStorage.setItem("chips", player.chips)
+  localStorage.setItem('name',player.name)
 }
 
 const getRandomCard = () => {
@@ -85,11 +105,8 @@ const renderGame = () => {
         messageEl.textContent = `New game in ${timeleft}`;
         timeleft -= 1;
       }
-    }, 1000);
+    }, 800);
   }
-    checkChips();
-};
-const checkChips = () => {
   if (hasBlackjack === true) {
     player.chips += 100;
     _name.textContent = player.name;
@@ -100,14 +117,27 @@ const checkChips = () => {
     _name.textContent = player.name;
     chip.textContent = player.chips;
   }
+  checkChips();
+  storage()
+};
+const checkChips = () => {
   if (player.chips < 0) {
-    alert("You're out of Chips!")
-    chip.classList.add("loss")
+    alert("oops! , You're out of Chips!");
+    _continue();
+    chip.classList.add("loss");
   } else
     chip.classList.remove("loss");
     
 }
-
+const _continue = () => {
+  const query = confirm("Do you want to start a new game?");
+  if (query) {
+    reset();
+    localStorage.removeItem("chips");
+    initLoad()
+    checkChips()
+  }
+}
 const reset = () => {
   firstCard = null;
   secondCard = null;
@@ -116,7 +146,7 @@ const reset = () => {
   hasBlackjack = false;
   isAlive = false;
   cardEl.textContent = "Cards: ";
-  messageEl.textContent = "Draw a card";
+  messageEl.textContent = "Draw a card!";
   sumEl.textContent = `Sum:`; 
   // player.chips = 0;
   // playerEl.textContent = `${player.name}: $${player.chips}`;
@@ -138,4 +168,7 @@ newGame.addEventListener("click", () => {
     cardArray.push(card); // adds card to end of array
     renderGame();
   } // invokes function
+})
+head.addEventListener("click", () => {
+  alert("You win if you get a combination of cards that sums up to 21[Blackjack]!\nand you lose if it exceeds it.\nwish you luck!")
 })

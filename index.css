@@ -55,6 +55,7 @@ h1 {
     color: goldenrod;
     transition: 0.3s ease-in-out;
     text-shadow: 4px 4px 2px #333;
+    cursor:pointer;
 }
 .chip{
     color: #4dff3b;
@@ -72,11 +73,14 @@ h1 {
     }
 }
 #message-el {
-    font-weight:700;
-    font-size:larger;
+    font-weight: 700;
+    font-size: larger;
     transition: 0.3s ease-in-out;
+    box-shadow: 0px 8px 10px 1px #222223;
+    padding: 0.5rem;
+    border-radius: 20px;
+    background: linear-gradient(44deg, #da8e00, goldenrod);
 }
-
 .card {
     position:relative;
     height: 4rem;
@@ -90,6 +94,17 @@ h1 {
     overflow:hidden;
     z-index: 1;
     box-shadow: 3px 2px 3px #222;
+    animation: up 0.3s linear;
+}
+@keyframes up {
+    from{
+        transform: translateY(20%) rotate3d(20, -18, -9, 57deg);
+        opacity:0;
+    }
+    to{
+        transform: rotate3d(0, 0, 0, 0deg) translateY(0%);
+        opacity:1;
+    }
 }
 .card span{
     z-index:2;
@@ -138,7 +153,7 @@ button {
     margin-bottom: 2px;
     margin-top: 2px;
     cursor: pointer;
-    box-shadow: 3px 2px 3px #222;
+    box-shadow: 6px 5px 2px 0px #222;
     -webkit-text-stroke: 0.2px #000;
     transition: 0.3s ease-in-out;
 }
