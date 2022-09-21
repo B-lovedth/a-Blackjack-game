@@ -163,6 +163,9 @@ button:active {
     background-color: #f67804;
 }
 @media (max-width:960px){
+    body{
+        font-size:xx-large;
+    }
     body::before,
     body::after{
         width:25rem;
@@ -170,5 +173,8 @@ button:active {
     }
     body::after{
         right:0;
+    }
+    #message-el{
+        font-size:1.6rem;
     }
 }
