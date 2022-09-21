@@ -1,12 +1,16 @@
+
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #016f32;
     color: white;
+    margin:0;
     -webkit-text-stroke: 1px #222;
     font-weight: bolder;
     text-align: center;
     font-size: 35px;
     overflow: hidden;
+    position: relative;
+    height:100vh;
 }
 
 body::before {
@@ -116,11 +120,21 @@ button {
     margin-top: 2px;
     cursor: pointer;
     box-shadow: 3px 2px 3px #222;
-    -webkit-text-stroke: 0.5px #fff;
+    -webkit-text-stroke: 0.2px #000;
     transition: 0.3s ease-in-out;
 }
 
 button:active {
     transform: scale(0.5);
     background-color: #f67804;
+}
+@media (max-width:960px){
+    body::before,
+    body::after{
+        width:25rem;
+        height:25rem;
+    }
+    body::after{
+        right:0;
+    }
 }
