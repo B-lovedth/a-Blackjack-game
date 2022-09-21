@@ -98,7 +98,7 @@ h1 {
 }
 @keyframes up {
     from{
-        transform: translateY(20%) rotate3d(20, -18, -9, 57deg);
+        transform: translateY(20%) rotate3d(11, -1, -1, 57deg);
         opacity:0;
     }
     to{
