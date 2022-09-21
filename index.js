@@ -181,8 +181,8 @@ head.addEventListener("click", () => {
 })
 _name.addEventListener("click", () => {
   let ask = confirm("Do you want to change your name?")
-  if (ask) {
-    let newName = promt("Enter Name");
+  if (ask===true) {
+    let newName = prompt("Enter Name");
     if (newName === "") {
       player.name = "You";
     } else if (isNaN(newName)) {
@@ -191,4 +191,10 @@ _name.addEventListener("click", () => {
       alert("Please enter a Valid name!");
     }
   }
+  changeName()
 })
+const changeName = () => {
+  storage();
+  console.log(player.name)
+  _name.textContent = player.name;
+}
