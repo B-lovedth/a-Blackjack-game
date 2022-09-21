@@ -54,8 +54,23 @@ body::after {
 h1 {
     color: goldenrod;
     transition: 0.3s ease-in-out;
+    text-shadow: 4px 4px 2px #333;
 }
-
+.chip{
+    color: #4dff3b;
+}
+.chip.loss{
+    color: red;
+    animation: glow 0.5s infinite linear;
+}
+@keyframes glow{
+    from{
+        opacity:1;
+    }
+    to{
+        opacity:0.5;
+    }
+}
 #message-el {
     font-weight:700;
     font-size:larger;

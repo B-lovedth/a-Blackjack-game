@@ -91,7 +91,15 @@ const renderGame = () => {
     player.chips -= 100;
     playerEl.textContent = `${player.name}: $${player.chips}`;
   }
+  checkChips()
 };
+const checkChips = () => {
+  if (player.chips < 0) {
+    playerEl.classList.add("loss")
+  } else
+    playerEl.classList.remove("loss");
+    
+}
 const reset = () => {
   firstCard = null;
   secondCard = null;
