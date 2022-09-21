@@ -58,15 +58,15 @@ const renderGame = () => {
   }
   sumEl.textContent = `Sum: ${sum}`; // displays the value of sum
   if (sum <= 20) {
-    messageEl.textContent = "Do you want to draw a new card?";
+    messageEl.textContent = "You can draw a new card!";
     isAlive = true;
     hasBlackjack = false;
   } else if (sum === 21) {
-    messageEl.textContent = "You've got Blackjack!";
+    messageEl.innerHTML = "You've got Blackjack!🃏🎉🎉";
     isAlive = true;
     hasBlackjack =true;
   } else {
-    messageEl.textContent = "You are out of the game! ";
+    messageEl.innerHTML = "You are out of the game!👊🏻 ";
     isAlive = false;
     hasBlackjack = false;
     let downloadTimer = setInterval(function () {
@@ -78,7 +78,7 @@ const renderGame = () => {
       } else {
         start.disabled = true;
         newGame.disabled = true;
-        messageEl.textContent = `new game in ${timeleft}`;
+        messageEl.textContent = `New game in ${timeleft}`;
         timeleft -= 1;
       }
     }, 1000);

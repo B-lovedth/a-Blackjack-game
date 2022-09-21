@@ -42,10 +42,14 @@ body::after {
     background: linear-gradient(45deg, #016f32, #00ff73);
         box-shadow: -10px -1px 6px #222;
 }
-.main{
-    height:100%;
-    width:100%;
-    z-index:5;
+.main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    z-index: 5;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 h1 {
     color: goldenrod;
