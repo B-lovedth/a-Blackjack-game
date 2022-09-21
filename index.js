@@ -179,3 +179,16 @@ newGame.addEventListener("click", () => {
 head.addEventListener("click", () => {
   alert("You win if you get a combination of cards that sums up to 21[Blackjack]!\nand you lose if it exceeds it.\nwish you luck!")
 })
+_name.addEventListener("click", () => {
+  let ask = confirm("Do you want to change your name?")
+  if (ask) {
+    let newName = promt("Enter Name");
+    if (newName === "") {
+      player.name = "You";
+    } else if (isNaN(newName)) {
+      player.name = newName;
+    } else if (!isNaN(newName)) {
+      alert("Please enter a Valid name!");
+    }
+  }
+})
