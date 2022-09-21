@@ -17,12 +17,19 @@ let player = {
   name: null,
   chips: null,
 };
+const setName = (variable) => {
+  console.log(variable)
+  let cap = variable[0].toUpperCase() + variable.slice(1, variable.length).toLowerCase();
+  return (
+    cap
+  );
+};
 const initLoad = () => {
   const getName = localStorage.getItem('name')
   const getChips = localStorage.getItem('chips')
-  if(getChips && getName) alert(`Welcome Back ${getName}`)
+  if(getChips && getName) alert(`Welcome Back ${getName}!`)
   if (getName) {
-    player.name = getName
+    player.name = setName(getName);
   } else {
       let uName = prompt("May i know your name?");
       if (uName === "") {
@@ -32,8 +39,8 @@ const initLoad = () => {
         );
 
       } else if (isNaN(uName)) {
-        alert(`Welcome!, ${uName}\nClick on the Blackjack logo for info on the game.`);
-        player.name = uName
+        player.name = setName(uName);
+        alert(`Welcome!, ${player.name}\nClick on the Blackjack logo for info on the game.`);
       } else if (!isNaN(uName)) {
         alert("Please enter a Valid name!");
         location.reload();
@@ -48,9 +55,10 @@ const initLoad = () => {
   chip.textContent = player.chips;
   console.log(player.chips)
   console.log(player.name)
+  console.log();
+
 }
 initLoad();
-
 
 const storage = () => {
   localStorage.setItem("chips", player.chips)
@@ -94,7 +102,7 @@ const renderGame = () => {
     isAlive = true;
     hasBlackjack =true;
   } else {
-    messageEl.innerHTML = "You are out of the game!👊🏻 ";
+    messageEl.innerHTML = "You lost this game!⭕ ";
     isAlive = false;
     hasBlackjack = false;
     let downloadTimer = setInterval(function () {
@@ -155,8 +163,6 @@ const reset = () => {
   cardEl.textContent = "Cards: ";
   messageEl.textContent = "Draw a card!";
   sumEl.textContent = `Sum:`; 
-  // player.chips = 0;
-  // playerEl.textContent = `${player.name}: $${player.chips}`;
   console.log("done");
 };;;
 start.addEventListener("click", () => {
@@ -177,7 +183,7 @@ newGame.addEventListener("click", () => {
   } // invokes function
 })
 head.addEventListener("click", () => {
-  alert("You win if you get a combination of cards that sums up to 21[Blackjack]!\nand you lose if it exceeds it.\nwish you luck!")
+  alert("Hi there!\n- This is a simple game of blackjack that's played by drawing cards.\n- You're initially given a starting balance of $1000 which can increase or decrease depending on whether or not you successfully draw a blackjack\n- You win if you get a card combination that sums up to 21[Blackjack]! , and you lose if it exceeds it. wish you luck!\n- Click on your name to change it if you want.")
 })
 _name.addEventListener("click", () => {
   let ask = confirm("Do you want to change your name?")
@@ -186,7 +192,8 @@ _name.addEventListener("click", () => {
     if (newName === "") {
       player.name = "You";
     } else if (isNaN(newName)) {
-      player.name = newName;
+      player.name =
+        setName(newName)
     } else if (!isNaN(newName)) {
       alert("Please enter a Valid name!");
     }
